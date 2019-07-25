@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: webserver
+  namespace: lab01
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: webserver
+    spec:
+      containers:
+       - name: webserver
+         image: nginx:stable-alpine
+         ports:
+         - name: http
+           containerPort: 80
