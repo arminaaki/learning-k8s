@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: webserver
+  namespace: lab02
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: webserver
+    spec:
+      containers:
+        - name: webserver
+          image: nginx:stable-alpine
+          ports:
+            - name: http
+              containerPort: 80
+          volumeMounts:
+            - mountPath: /etc/nginx/conf.d
+              readOnly: true
+              name: nginx-conf
+      volumes:
+        - name: nginx-conf
+          configMap:
+            name: nginx-conf
+            items:
+              - key: web.conf
+                path: web.conf
+              - key: app1.html
+                path: app1.html
+              - key: app2.html
+                path: app2.html
