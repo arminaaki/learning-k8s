@@ -6,4 +6,4 @@ deploy:
 clean:
 	kubectl delete deployment webserver
 	kubectl delete svc webserver
-	kubectl delete namespace lab02
+	kubectl delete namespace lab03
