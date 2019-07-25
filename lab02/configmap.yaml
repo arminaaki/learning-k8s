@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-conf
+data:
+  web.conf: |
+    server {
+    listen       80;
+    server_name  vettom.co.uk;
+    location / {
+        root   /etc/nginx/conf.d/;
+        index  index.html index.htm;
+    }
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+    }
+  app1.html: |
+    <h1>Hello from Web 1 </h1>
+  app2.html: |
+    <h1>Hello from Web 2</h1>
